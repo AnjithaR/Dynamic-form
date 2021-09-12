@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+    <span>Dynamic Form</span>
+</mat-toolbar>
+<!--main form-->
+<div class ="flex justify-center m-3.5">
+    <mat-card class ="w-1/2">
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Generate Forms</mat-label>
+                <textarea class="textarea.mat-input-element" matInput placeholder="Place the json to generate forms"
+                    formControlName="jsonData"></textarea>
+            </mat-form-field>
+                    <button type="submit" mat-raised-button color="primary"><span
+                            class="font-montserrat">Generate</span></button>
+                    </div>
+    </form>
+    </mat-card>
+</div>

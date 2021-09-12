@@ -1,0 +1,61 @@
+
+<ng-container *ngIf ="this.jsonFormData?.length">
+<ng-container *ngFor="let form of this.jsonFormData;">
+
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+             {{form.label}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+    <form [formGroup]="jsonForm" (ngSubmit)="onSubmit()">
+         <ng-container *ngFor="let control of form?.controls">
+         <ng-container *ngIf="control?.type === 'textfield' ">
+              <mat-form-field appearance="fill">
+                    <mat-label>{{control.name}}</mat-label>
+                    <input matInput placeholder="{{control?.placeholder}}" formControlName="{{control.name}}">
+                </mat-form-field>
+         </ng-container>
+                <ng-container *ngIf="control?.type === 'textarea'">
+                    <mat-form-field appearance="fill">
+                        <mat-label>{{control.name}}</mat-label>
+                        <textarea matInput placeholder="{{control?.placeholder}}" formControlName="{{control.name}}">
+                            </textarea>
+                    </mat-form-field>
+                </ng-container>
+                <ng-container *ngIf="control?.type === '' ">
+                    <mat-form-field appearance="fill">
+                        <mat-label>{{control.name}}</mat-label>
+                        <textarea matInput placeholder="{{control?.placeholder}}" formControlName="{{control.name}}">
+                                            </textarea>
+                    </mat-form-field>
+                </ng-container>
+                <ng-container *ngIf="control?.type === 'number'">
+                    <mat-form-field appearance="fill">
+                        <mat-label>{{control.name}}</mat-label>
+                        <input matInput type="tel" placeholder="{{control?.placeholder}}" formControlName="{{control.name}}">          
+                    </mat-form-field>
+                </ng-container>
+                <ng-container *ngIf="control?.type === 'date'">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </ng-container>
+            <ng-container *ngIf="control?.type === 'date'">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </ng-container>
+         </ng-container>
+                            <button type="submit" mat-raised-button color="primary"><span class="font-montserrat"></span></button>
+</form>
+
+    </mat-expansion-panel>
+</mat-accordion>
